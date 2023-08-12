@@ -50,3 +50,8 @@ ApplicationThread 是 ActivityThread 的内部类，它里面会通过 `schedule
 
 H 的 `handleMessage()` 方法会处理这个消息，内部会通过 `performLaunchActivity()` 启动 Activity，然后将 Activity 的状态设置为 `Resume`。而 `performLaunchActivity()` 首先获取 ActivityInfo，里面存储了一些 Manifest 设置的信息，然后获取 APK 文件的描述类 LoadedApk 以及要启动的 Activity 的ComponentName（这里面保存了 Activity 的包名和类名），最终会通过类加载器类创建这个 activity。创建好了后就调用 Activity 的`attach()` 方法用于初始化 Activity 以及创建 Window 对象。最终调用 `Instrumentation.callActiviyOnCreate()` 来调用这个 Activity 的`preformCreate()` 进而调用 `onCreate()`
 
+
+
+## 附录
+
+- [Activity的启动过程详解（基于Android10.0）](https://juejin.cn/post/6847902222294990862#comment)
